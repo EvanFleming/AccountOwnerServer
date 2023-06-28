@@ -5,6 +5,9 @@ using NLog;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using AccountOwnerServer.DBContext;
+using AccountOwnerServer.GlobalErrorHandling.Extensions;
+using Microsoft.Extensions.Logging;
+using Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +33,10 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+
+
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -39,6 +46,13 @@ else
 {
     app.UseHsts();
 }
+
+//global error handling
+//var logger = app.Services.GetRequiredService<ILoggerManager>();
+//app.ConfigureExceptionHandler(logger);
+app.ConfigureCustomExceptionMiddleware();
+//end global error handling
+
 
 app.UseHttpsRedirection();
 

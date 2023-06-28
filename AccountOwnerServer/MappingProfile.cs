@@ -7,11 +7,9 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Owner, OwnerDto>();
+        CreateMap<OwnerForCreationDto, Owner>();
+        CreateMap<OwnerForUpdateDto, Owner>();
         
-        var mapOwnerToCreateDto = CreateMap<Owner, OwnerForCreationDto>();
-
-        var mapCreateDtoToOwner = CreateMap<OwnerForCreationDto, Owner>();
-
         CreateMap<Account, AccountDto>();
 
     }
