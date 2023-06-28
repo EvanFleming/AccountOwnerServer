@@ -42,7 +42,12 @@ namespace Repository
 
         public void Save()
         {
-            _repoContext.SaveChanges();
+            _repoContext.SaveChangesAsync();
+        }
+
+        public async Task SaveAsync()
+        {
+            await _repoContext.SaveChangesAsync();
         }
     }
 }
