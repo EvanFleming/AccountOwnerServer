@@ -6,14 +6,18 @@ using NLog;
 
 
 /*
+ *
  * Code-Maze tutorial
  * https://code-maze.com/net-core-web-development-part1/
+ * 
+ * https://code-maze.com/global-error-handling-aspnetcore/
+ *
  */
 
 var builder = WebApplication.CreateBuilder(args);
 
-//LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
 // Add services to the container.
 
 builder.Services.ConfigureCors();
@@ -23,6 +27,7 @@ builder.Services.ConfigureLoggerService();
 
 builder.Services.ConfigureSQLiteContext(builder.Configuration);
 
+///TODO: need to figure out a better way to build database from objects
 //builder.Services.AddDbContext<DBInteractor>();
 
 builder.Services.ConfigureRepositoryWrapper();
@@ -49,8 +54,6 @@ else
 }
 
 //global error handling
-//var logger = app.Services.GetRequiredService<ILoggerManager>();
-//app.ConfigureExceptionHandler(logger);
 app.ConfigureCustomExceptionMiddleware();
 //end global error handling
 
