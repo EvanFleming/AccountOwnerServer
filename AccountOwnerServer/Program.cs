@@ -1,13 +1,14 @@
 using AccountOwnerServer.Extensions;
+using AccountOwnerServer.GlobalErrorHandling.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
 
-using Microsoft.EntityFrameworkCore;
-using Entities;
-using AccountOwnerServer.DBContext;
-using AccountOwnerServer.GlobalErrorHandling.Extensions;
-using Microsoft.Extensions.Logging;
-using Contracts;
+
+
+/*
+ * Code-Maze tutorial
+ * https://code-maze.com/net-core-web-development-part1/
+ */
 
 var builder = WebApplication.CreateBuilder(args);
 
